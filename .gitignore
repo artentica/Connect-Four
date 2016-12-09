@@ -14,6 +14,7 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
+
 # Windows shortcuts
 *.lnk
 
@@ -38,6 +39,8 @@ $RECYCLE.BIN/
 .TemporaryItems
 .Trashes
 .VolumeIcon.icns
+.idea
+.settings
 
 # Directories potentially created on remote AFP share
 .AppleDB
