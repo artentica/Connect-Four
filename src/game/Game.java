@@ -48,14 +48,26 @@ public class Game{
         System.out.println("------PUISSANCE 4 ENSEIRB------");
         logger.log(Level.INFO,"Programm start");
 
-		Row row = new Row();
-		for(int i=0; i<row.getSize();i++){
-			row.getLine().addElement(new Column());
-			Column temp = (Column) row.getLine().get(i);
-		}
+        int sizeLine = 0;
+        int sizeColumn = 0;
 
+        Row row;
+        Console screen = new Console();
 
-		Console screen = new Console();
+        boolean gridSize;
+
+        if(screen.choiceGrid()){
+            do {
+                sizeLine = screen.nbColumn();
+                sizeColumn = screen.nbLine();
+                gridSize = Motor.gridRatio(sizeColumn,sizeLine);
+                if (!gridSize) screen.badRatio();
+            }while(!gridSize);
+
+            row=Motor.createGrid(sizeColumn,sizeLine);
+
+        }else row =Motor.createGrid();
+
         logger.log(Level.INFO,"Creation of the IHM");
 
 		Vector<Player> players = new Vector<Player>();
@@ -89,7 +101,7 @@ public class Game{
         logger.log(Level.INFO,"Beginning of the game");
 
         int turn =0;
-        int column;
+        int column = 0;
 
         do{
             try{
@@ -116,9 +128,11 @@ public class Game{
                 logger.log(Level.SEVERE,e.toString());
             }
 		    //Motor.addTocken();
+        }while (!Motor.checkWin(row,column-1));
 
-        }while (true);
 
+        System.out.println("We have a winner");
+        screen.displayGrid(row.getLine());
 
 
 		//displayGrid(row.getLine());

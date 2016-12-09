@@ -22,9 +22,10 @@ public class Console implements Interface {
         System.out.println("");
 
         for (int y = size - 1; y >= 0; y--) {
-            for (int x = 0; x < vct.size() - 1; x++) {
+            for (int x = 0; x < vct.size(); x++) {
                 Column temp = (Column) vct.elementAt(x);
                 System.out.print(" " + temp.getLine().elementAt(y).getSymbol());
+
             }
             System.out.println("");
         }
@@ -137,4 +138,64 @@ public class Console implements Interface {
         System.out.println("La colonne n°" + column +" est pleine, veuillez en choisir une autre");
     }
 
+    public int nbColumn(){
+        Scanner sc = new Scanner(System.in);
+        String str = "";
+        int nb = 0;
+
+        do {
+            System.out.println("Choisissez le nombre de colonnes (min. 4): ");
+            str = sc.nextLine();
+            try {
+                nb = Integer.parseInt(str);
+            } catch (NumberFormatException e) {
+                System.out.println("Mauvais nombre donné, seul les nombres sont acceptés: " + e);
+                nb = 0;
+            }
+            if (nb<4)
+                System.out.println("Vous devez avoir au minimum 4 colonnes");
+        } while (nb<4);
+        return nb;
+    }
+
+    public int nbLine(){
+        Scanner sc = new Scanner(System.in);
+        String str = "";
+        int nb = 0;
+
+        do {
+            System.out.println("Choisissez le nombre de lignes (min. 2): ");
+            str = sc.nextLine();
+            try {
+                nb = Integer.parseInt(str);
+            } catch (NumberFormatException e) {
+                System.out.println("Mauvais nombre donné, seul les nombres sont acceptés: " + e);
+                nb = 0;
+            }
+            if (nb<2)
+                System.out.println("Vous devez avoir au minimum 2 lignes");
+        } while (nb<2);
+        return nb;
+    }
+
+    public boolean choiceGrid(){
+        Scanner sc = new Scanner(System.in);
+        String str = "";
+
+        System.out.println("Voulez-vous choisir la taille de la grille?(y/n):");
+        while (true){
+
+            str = sc.nextLine();
+
+            if (str.equals("y")) return true;
+            else if (str.equals("n")) return false;
+            else System.out.println("Veuillez choisir entre oui(y) et non(n):");
+        }
+
+
+    }
+
+    public void badRatio() {
+        System.out.println("Le nombre de lignes multiplié par le nombre de colonnes doit être pair");
+    }
 }

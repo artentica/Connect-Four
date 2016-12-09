@@ -21,4 +21,10 @@ public interface Interface{  // notre interface
     public abstract int choiceColumn(int max);
 
     public abstract void columnFull(int column);
+
+    public abstract int nbColumn();
+
+    public abstract boolean choiceGrid();
+
+    public abstract void badRatio();
 }
