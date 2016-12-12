@@ -20,7 +20,8 @@ public interface Interface{  // notre interface
     public abstract void winV();
     public abstract void winDL2UR();
     public abstract void winUL2DR();
-
+    public abstract void fullGrid();
+    public abstract void win(String name);
 
     public abstract int numberWinGame(int nbPlayers);
 

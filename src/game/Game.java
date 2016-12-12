@@ -108,18 +108,21 @@ public class Game {
 
         int winLimit = screen.numberWinGame(players.size());
         int sizeGrid = (row.getLine().size())*(row.getLine().elementAt(0).getLine().size());
-
+        int turn, shift;
+        int subTurn = 0;
+        int column = 0;
         while (winLimit != 0) {
             screen.begin();
             logger.log(Level.INFO, "Beginning of a game");
 
-            int turn = 0;
-            int column = 0;
+            turn = 0;
+            column = 0;
+            shift = subTurn%nbPlayer;
             Player current = players.elementAt(0);
             do {
 
                 try {
-                    current = Motor.turnOf(players, turn % nbPlayer);
+                    current = Motor.turnOf(players, (turn % nbPlayer)+shift);
 
                     screen.turnOf(current);//write who have to play
                     logger.log(Level.INFO, "It's to " + current.getName() + " to play");
@@ -143,16 +146,20 @@ public class Game {
                     turn++;
                 }
                 //Motor.addTocken();
-            } while (!Motor.checkWin(row, column - 1, screen) && turn+1<sizeGrid);
+            } while (!Motor.checkWin(row, column - 1, screen) && turn<sizeGrid);
 
             screen.displayGrid(row.getLine());
 
-            System.out.println("The player: '" + current.getName() + "' have win");
-            current.win();
+            if (turn==sizeGrid)screen.fullGrid();
+            else {
+                screen.win(current.getName());
+                current.win();
+                logger.log(Level.INFO, "The player: '" + current.getName() + "' won");
+                winLimit--;//On décrémente le nombre de parties à faire
+            }
+            subTurn++;
+            row.setZero();
 
-
-            logger.log(Level.INFO, "The player: '" + current.getName() + "' have win");
-            winLimit--;//On décrémente le nombre de parties à faire
             screen.score(players, winLimit);
             screen.end();
         }

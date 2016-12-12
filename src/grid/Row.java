@@ -16,7 +16,7 @@ public class Row {
 
 	// Definition of the variables
 	private int size; //total size of the row
-	private Vector line;
+	private Vector<Column> line;
 
 	//construtor by default
 	public Row(){
@@ -27,5 +27,13 @@ public class Row {
 	public Row(int size){
 		this.size = size;
 		this.line = new Vector<Column>();
+	}
+
+	public void setZero(){
+		for (int i = 0; i<this.line.size(); i++) {
+			for (int x = 0; x < this.line.elementAt(i).getLine().size(); x++) {
+				this.line.elementAt(i).getLine().set(x, new Token("."));
+			}
+		}
 	}
 }

@@ -237,6 +237,10 @@ public class Console implements Interface {
 
     }
 
+    public void fullGrid(){
+        System.out.println("La grille est pleine, aucun points de marquées");
+    }
+
     public void badRatio() {
         System.out.println("Le nombre de lignes multiplié par le nombre de colonnes doit être pair");
     }
@@ -260,6 +264,10 @@ public class Console implements Interface {
         for(int i = 0; i<vct.size();i++){
             System.out.println("Player "+ vct.elementAt(i).getName() + " have " + vct.elementAt(i).getVictory() + " win(s)");
         }
-        System.out.println("There is "+ win + " game(s) to de !!!");
+        System.out.println("There is "+ win + " game(s) to do !!!");
+    }
+
+    public void win(String name){
+        System.out.println("The player: '" + name + "' won");
     }
 }
