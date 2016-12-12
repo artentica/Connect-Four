@@ -43,6 +43,8 @@ public class Console implements Interface {
         while (nb < 2) {
             System.out.println("Nombre de joueur: ");
             str = sc.nextLine();
+            if (str.equals("exit")) System.exit(0);
+
             try {
                 nb = Integer.parseInt(str);
 /*
@@ -58,6 +60,35 @@ public class Console implements Interface {
         }
         return nb;
     }
+    public int numberWinGame(int nbPlayers){
+
+        Scanner sc = new Scanner(System.in);
+        String str;
+
+        int nb = 0;
+
+
+        while (nb<=0 || (nb-1)%nbPlayers!=0 ) {
+            System.out.println("Combien de manches gagnantes?");
+
+            str = sc.nextLine();
+            if (str.equals("exit")) System.exit(0);
+
+            try {
+                nb = Integer.parseInt(str);
+/*
+                if (nb>2) break;
+*/
+            } catch (NumberFormatException e) {
+                System.out.println("Mauvais nombre donné: " + e);
+                nb = 0;
+            }
+
+            if (nb<=0 || nb-1%nbPlayers!=0 ) System.out.println("Il doit y avoir x*NbDeJoueur+1 parties impaire pour désigner un gagnant: " + nb);
+
+        }
+        return nb;
+    }
 
     public String namePlayer(int i) {
         Scanner sc = new Scanner(System.in);
@@ -65,6 +96,7 @@ public class Console implements Interface {
         while (str.length() < 1 || str.length() > 15) {
             System.out.println("Nom du joueur n°" + (i + 1) + ": ");
             str = sc.nextLine();
+            if (str.equals("exit")) System.exit(0);
 
             if (str.length() < 1 || str.length() > 15)
                 System.out.println("Le nom doit faire entre 1 et 15 caractères, nombre de caractères actuel: " + str.length());
@@ -98,6 +130,9 @@ public class Console implements Interface {
         while (symbol.length() != 1 && !symbol.equals(".")) {
             System.out.println("Symbole du joueur " + name + ": ");
             symbol = sc.nextLine();
+
+            if (str.equals("exit")) System.exit(0);
+
             if (symbol.length() != 1 && !symbol.equals("."))
                 System.out.println("Le symbole ne doit faire qu'un seule et ne doit pas être un '.', taille actuel: " + symbol.length());
         }
@@ -106,6 +141,10 @@ public class Console implements Interface {
 
     public void begin() {
         System.out.println("Vous pouvez maintenant commencer à jouer !!!");
+    }
+
+    public void end() {
+        System.out.println("--------------------------------------------------");
     }
 
     public void turnOf(Player player) {
@@ -120,6 +159,7 @@ public class Console implements Interface {
         do {
             System.out.println("Choisissez une colonne: ");
             str = sc.nextLine();
+            if (str.equals("exit")) System.exit(0);
             try {
                 nb = Integer.parseInt(str);
             } catch (NumberFormatException e) {
@@ -146,6 +186,7 @@ public class Console implements Interface {
         do {
             System.out.println("Choisissez le nombre de colonnes (min. 4): ");
             str = sc.nextLine();
+            if (str.equals("exit")) System.exit(0);
             try {
                 nb = Integer.parseInt(str);
             } catch (NumberFormatException e) {
@@ -166,6 +207,7 @@ public class Console implements Interface {
         do {
             System.out.println("Choisissez le nombre de lignes (min. 2): ");
             str = sc.nextLine();
+            if (str.equals("exit")) System.exit(0);
             try {
                 nb = Integer.parseInt(str);
             } catch (NumberFormatException e) {
@@ -186,8 +228,8 @@ public class Console implements Interface {
         while (true){
 
             str = sc.nextLine();
-
-            if (str.equals("y")) return true;
+            if (str.equals("exit")) System.exit(0);
+            else if (str.equals("y")) return true;
             else if (str.equals("n")) return false;
             else System.out.println("Veuillez choisir entre oui(y) et non(n):");
         }
@@ -212,5 +254,12 @@ public class Console implements Interface {
     }
     public void winUL2DR(){
         System.out.println("Victoire diagonal haut gauche à bas droite \\");
+    }
+
+    public void score(Vector<Player> vct, int win){
+        for(int i = 0; i<vct.size();i++){
+            System.out.println("Player "+ vct.elementAt(i).getName() + " have " + vct.elementAt(i).getVictory() + " win(s)");
+        }
+        System.out.println("There is "+ win + " game(s) to de !!!");
     }
 }

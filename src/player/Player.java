@@ -31,10 +31,21 @@ public class Player{
     private String symbol;
     private int index;
 
+    public void win() {
+        this.victory++;
+    }
+
+    public int getVictory() {
+        return victory;
+    }
+
+    private int victory;
+
     public Player(String name, String symbol, int index){
         this.name = name;
         this.symbol = symbol;
         this.index = index;
+        this.victory = 0;
     }
 
 }

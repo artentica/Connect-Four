@@ -15,10 +15,18 @@ public interface Interface{  // notre interface
     public abstract void checkName(Vector<Player> vct, String name);
     public abstract void checkSymbol(Vector<Player> vct, String symbol);
     public abstract void begin();
+    public abstract void end();
     public abstract void winH();
     public abstract void winV();
     public abstract void winDL2UR();
     public abstract void winUL2DR();
+
+
+    public abstract int numberWinGame(int nbPlayers);
+
+    public abstract void score(Vector<Player> vct, int win);
+
+
 
     public abstract void turnOf(Player player);
 

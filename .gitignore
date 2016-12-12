@@ -46,6 +46,7 @@ $RECYCLE.BIN/
 *.iml
 *.lck
 .project
+bin
 
 # Directories potentially created on remote AFP share
 .AppleDB
