@@ -4,6 +4,7 @@ import exception.NotFoundException;
 import grid.Column;
 import grid.Row;
 import grid.Token;
+import javafx.stage.Screen;
 import player.Player;
 
 import java.util.Vector;
@@ -97,46 +98,118 @@ public class Motor {
     }
 
 
-    public static boolean checkHorizontal(Row row, int column) {
-        int count = 1;//we start with the current token
+    public static boolean checkHorizontal(Row row, int column, Interface screen) {
         int columnTemp = column;
         int index = row.getLine().elementAt(column).getSize() - row.getLine().elementAt(column).getFree()-1;
+        Vector<Token> win = new Vector<Token>();
+        win.add(row.getLine().elementAt(columnTemp).getLine().elementAt(index));
+
         String symbol = row.getLine().elementAt(column).getLine().elementAt(index).getSymbol();
         while (columnTemp > 0 && row.getLine().elementAt(columnTemp - 1).getLine().elementAt(index).getSymbol().equals(symbol)) {
-            count++;
+            win.add(row.getLine().elementAt(columnTemp - 1).getLine().elementAt(index));
             columnTemp--;
         }
         columnTemp = column;
 
         while (columnTemp + 1 < row.getLine().size() && row.getLine().elementAt(columnTemp + 1).getLine().elementAt(index).getSymbol().equals(symbol)) {
-            count++;
+            win.add(row.getLine().elementAt(columnTemp + 1).getLine().elementAt(index));
             columnTemp++;
         }
-        if (count >= 4) return true;
+        if (win.size() >= 4){
+            screen.winH();
+            return true;
+        }
         else return false;
 
     }
 
-    public static boolean checkWin(Row row, int column) {
-        return (Motor.checkHorizontal(row, column) || checkWinVertical(row, column));
-/*      checkDiagUL2DR(Row row,int colonne);
-        checkDiagDL2UR(Row row,int colonne);*/
+    public static boolean checkWin(Row row, int column, Interface screen) {
+        return (Motor.checkHorizontal(row, column, screen) || checkWinVertical(row, column, screen)  || checkDiagUL2DR(row, column, screen) || checkDiagDL2UR(row, column, screen));
     }
 
-    private static boolean checkWinVertical(Row row, int column) {
-        int count = 1;//we start with the current token
+    private static boolean checkDiagUL2DR(Row row, int column, Interface screen) {
+        int columnTemp = column;
+        int maxColumn = row.getSize()-1;
         int index = row.getLine().elementAt(column).getSize() - row.getLine().elementAt(column).getFree()-1;
+        int indexTemp = index;
+        Vector<Token> win = new Vector<Token>();
+        win.add(row.getLine().elementAt(columnTemp).getLine().elementAt(indexTemp));
 
+        String symbol = row.getLine().elementAt(column).getLine().elementAt(index).getSymbol();
+        while (columnTemp + 1 < row.getLine().size() && indexTemp > 0 && row.getLine().elementAt(columnTemp + 1).getLine().elementAt(indexTemp -1).getSymbol().equals(symbol)) {
+            win.add(row.getLine().elementAt(columnTemp + 1).getLine().elementAt(indexTemp -1));
+            columnTemp++;
+            indexTemp--;
+        }
+        columnTemp = column;
+        indexTemp=index;
+        while (columnTemp > 0  && indexTemp + 1 < maxColumn && row.getLine().elementAt(columnTemp - 1).getLine().elementAt(indexTemp+1).getSymbol().equals(symbol)) {
+            win.add(row.getLine().elementAt(columnTemp - 1).getLine().elementAt(indexTemp +1));
+
+            columnTemp--;
+            indexTemp++;
+        }
+        if (win.size() >= 4){
+            screen.winUL2DR();
+
+            return true;
+        }
+        else return false;
+    }
+
+    private static boolean checkDiagDL2UR(Row row, int column, Interface screen) {
+        int columnTemp = column;
+        int maxColumn = row.getSize()-1;
+        int index = row.getLine().elementAt(column).getSize() - row.getLine().elementAt(column).getFree()-1;
+        int indexTemp = index;
+        Vector<Token> win = new Vector<Token>();
+        win.add(row.getLine().elementAt(columnTemp).getLine().elementAt(indexTemp));
+
+        String symbol = row.getLine().elementAt(column).getLine().elementAt(index).getSymbol();
+        while (columnTemp > 0 && indexTemp > 0 && row.getLine().elementAt(columnTemp - 1).getLine().elementAt(indexTemp -1).getSymbol().equals(symbol)) {
+            win.add(row.getLine().elementAt(columnTemp - 1).getLine().elementAt(indexTemp -1));
+            columnTemp--;
+            indexTemp--;
+        }
+        columnTemp = column;
+        indexTemp=index;
+        while (columnTemp + 1 < row.getLine().size() && indexTemp + 1 < maxColumn && row.getLine().elementAt(columnTemp + 1).getLine().elementAt(indexTemp+1).getSymbol().equals(symbol)) {
+            win.add(row.getLine().elementAt(columnTemp + 1).getLine().elementAt(indexTemp+1));
+            columnTemp++;
+            indexTemp++;
+        }
+        if (win.size() >= 4){
+            screen.winDL2UR();
+            return true;
+        }
+
+        else{
+            return false;
+        }
+    }
+
+    private static boolean checkWinVertical(Row row, int column, Interface screen) {
+        int index = row.getLine().elementAt(column).getSize() - row.getLine().elementAt(column).getFree()-1;
+        Vector<Token> win = new Vector<Token>();
+        win.add(row.getLine().elementAt(column).getLine().elementAt(index));
 
         String symbol = row.getLine().elementAt(column).getLine().elementAt(index).getSymbol();
 
         while (index > 0 && row.getLine().elementAt(column).getLine().elementAt(index - 1).getSymbol().equals(symbol)) {
-            count++;
+            win.add(row.getLine().elementAt(column).getLine().elementAt(index - 1));
             index--;
         }
-        if (count >= 4) return true;
+        if (win.size() >= 4){
+            screen.winV();
+            return true;
+        }
         else return false;
 
+    }
+
+    public static String command(String command){
+        String str = "Command('";
+        return str + command +"')";
     }
 
 }

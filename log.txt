@@ -1,0 +1,34 @@
+déc. 12, 2016 2:23:51 PM game.Game main
+INFOS: Programm start
+déc. 12, 2016 2:23:52 PM game.Game main
+INFOS: Command('n') Not a custum grid
+déc. 12, 2016 2:23:52 PM game.Game main
+INFOS: Creation of the IHM
+déc. 12, 2016 2:23:52 PM game.Game main
+INFOS: Instanciation of the variables
+déc. 12, 2016 2:23:52 PM game.Game main
+INFOS: Command('2')' Number of players
+déc. 12, 2016 2:23:52 PM game.Game main
+INFOS: Creation of the player n°1
+déc. 12, 2016 2:23:53 PM game.Game main
+INFOS: Command('p')' Name of the player n°1
+déc. 12, 2016 2:23:53 PM game.Game main
+INFOS: Command('p')' Symbol of the player n°1 named p
+déc. 12, 2016 2:23:53 PM game.Game main
+INFOS: Creation of the player n°2
+déc. 12, 2016 2:23:54 PM game.Game main
+INFOS: Command('o')' Name of the player n°2
+déc. 12, 2016 2:23:54 PM game.Game main
+INFOS: Command('o')' Symbol of the player n°2 named o
+déc. 12, 2016 2:23:54 PM game.Game main
+INFOS: Beginning of the game
+déc. 12, 2016 2:23:54 PM game.Game main
+INFOS: It's to p to play
+déc. 12, 2016 2:23:56 PM game.Game main
+INFOS: Command('1') p have choosen the column n°1
+déc. 12, 2016 2:23:56 PM game.Game main
+INFOS: It's to o to play
+déc. 12, 2016 2:24:00 PM game.Game main
+INFOS: Command('7') o have choosen the column n°7
+déc. 12, 2016 2:24:00 PM game.Game main
+INFOS: It's to p to play

@@ -15,7 +15,7 @@ import java.util.Vector;
 public class Console implements Interface {
 
     public void displayGrid(Vector<Column> vct) {
-        int size = ((Column) vct.elementAt(0)).getSize();
+        int size = (vct.elementAt(0)).getSize();
         for (int x = 0; x < vct.size(); x++) {
             System.out.print(" " + (x + 1));
         }
@@ -23,7 +23,7 @@ public class Console implements Interface {
 
         for (int y = size - 1; y >= 0; y--) {
             for (int x = 0; x < vct.size(); x++) {
-                Column temp = (Column) vct.elementAt(x);
+                Column temp = vct.elementAt(x);
                 System.out.print(" " + temp.getLine().elementAt(y).getSymbol());
 
             }
@@ -197,5 +197,20 @@ public class Console implements Interface {
 
     public void badRatio() {
         System.out.println("Le nombre de lignes multiplié par le nombre de colonnes doit être pair");
+    }
+
+
+    public void winH(){
+        System.out.println("Victoire horizontal -");
+    }
+    public void winV(){
+        System.out.println("Victoire vertical |");
+    }
+
+    public void winDL2UR(){
+        System.out.println("Victoire diagonal bas gauche à haut droite /");
+    }
+    public void winUL2DR(){
+        System.out.println("Victoire diagonal haut gauche à bas droite \\");
     }
 }

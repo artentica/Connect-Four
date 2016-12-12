@@ -22,7 +22,6 @@ public class Game{
 
         // création d'un Logger et d'un Handler Logger
         Logger logger = Logger.getLogger("MyLogger");
-        FileHandler fh;
 
 
         logger.setLevel(Level.ALL); //pour envoyer les messages de tous les niveaux
@@ -34,13 +33,14 @@ public class Game{
 
         //IF YOU WANT TO PUT 1 SESSION LOG IN A FILE
 
-        /*fh = new FileHandler("*PATH2MY_FOLDER*\/MyLogFile.log");
+        FileHandler fh;
+        fh = new FileHandler("log.txt", 0, 1,  false);
         logger.addHandler(fh);
         SimpleFormatter formatter = new SimpleFormatter();
-        fh.setFormatter(formatter);*/
+        fh.setFormatter(formatter);
 
         ConsoleHandler ch = new ConsoleHandler();
-        ch.setLevel(Level.SEVERE); // pour n'accepter que les message de niveau &Ge; INFO
+        ch.setLevel(Level.SEVERE); // pour n'accepter que les message de niveau &Gt; INFO
         logger.addHandler(ch);
 
 
@@ -57,6 +57,7 @@ public class Game{
         boolean gridSize;
 
         if(screen.choiceGrid()){
+            logger.log(Level.INFO,Motor.command("y") + " Custum grid");
             do {
                 sizeLine = screen.nbColumn();
                 sizeColumn = screen.nbLine();
@@ -66,7 +67,10 @@ public class Game{
 
             row=Motor.createGrid(sizeColumn,sizeLine);
 
-        }else row =Motor.createGrid();
+        }else{
+            logger.log(Level.INFO,Motor.command("n") + " Not a custum grid");
+            row =Motor.createGrid();
+        }
 
         logger.log(Level.INFO,"Creation of the IHM");
 
@@ -77,8 +81,10 @@ public class Game{
 
 
         int nbPlayer = screen.nbPlayer();
+        logger.log(Level.INFO,Motor.command(String.valueOf(nbPlayer)) + "' Number of players");
 
 		for(int i = 0; i<nbPlayer;i++){
+            logger.log(Level.INFO,"Creation of the player n°" +(i+1));
 
 			tempName = screen.namePlayer(i);
 
@@ -87,12 +93,17 @@ public class Game{
 				tempName = screen.namePlayer(i);
 			}
 
-			symbol = screen.symbolePlayer(tempName);
+            logger.log(Level.INFO,Motor.command(tempName) + "' Name of the player n°" + (i+1));
+
+
+            symbol = screen.symbolePlayer(tempName);
+
 
 			while(Motor.usedSymbol(players, symbol)){
                 screen.checkSymbol(players,symbol);
 				symbol = screen.symbolePlayer(tempName);
 			}
+            logger.log(Level.INFO,Motor.command(symbol) +  "' Symbol of the player n°" + (i+1) +" named "+ tempName);
 
 			players.add(new Player(tempName,symbol,i));
 		}
@@ -119,8 +130,7 @@ public class Game{
                     column = screen.choiceColumn(row.getSize());
                 }
 
-                logger.log(Level.INFO,current.getName() + " have choosen the column n°"+ column);
-
+                logger.log(Level.INFO,Motor.command(String.valueOf(column)) + " " + current.getName() + " have choosen the column n°"+ column);
                 Motor.addToken(current, row.getLine().elementAt(column-1));
 
                 turn++;
@@ -128,14 +138,16 @@ public class Game{
                 logger.log(Level.SEVERE,e.toString());
             }
 		    //Motor.addTocken();
-        }while (!Motor.checkWin(row,column-1));
+        }while (!Motor.checkWin(row,column-1, screen));
 
 
-        System.out.println("We have a winner");
         screen.displayGrid(row.getLine());
 
+        System.out.println("We have a winner");
 
-		//displayGrid(row.getLine());
+
+
+        //displayGrid(row.getLine());
 
 	}
 
