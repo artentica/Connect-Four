@@ -44,6 +44,8 @@ $RECYCLE.BIN/
 .classpath
 .artentica*
 *.iml
+*.lck
+.project
 
 # Directories potentially created on remote AFP share
 .AppleDB

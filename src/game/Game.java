@@ -113,14 +113,19 @@ public class Game{
 
         int turn =0;
         int column = 0;
-
+        Player current = players.elementAt(0);
         do{
             try{
-                Player current = Motor.turnOf(players,turn%nbPlayer);
+                current = Motor.turnOf(players,turn%nbPlayer);
 
                 screen.turnOf(current);//write who have to play
                 logger.log(Level.INFO,"It's to " + current.getName() + " to play");
 
+
+            }catch(NotFoundException e){
+                logger.log(Level.SEVERE,e.toString());
+
+            }finally {
                 screen.displayGrid(row.getLine());
 
                 column = screen.choiceColumn(row.getSize());
@@ -134,16 +139,14 @@ public class Game{
                 Motor.addToken(current, row.getLine().elementAt(column-1));
 
                 turn++;
-            }catch(NotFoundException e){
-                logger.log(Level.SEVERE,e.toString());
             }
-		    //Motor.addTocken();
+            //Motor.addTocken();
         }while (!Motor.checkWin(row,column-1, screen));
-
 
         screen.displayGrid(row.getLine());
 
-        System.out.println("We have a winner");
+        System.out.println("The player: '"+current.getName()"' have win");
+        logger.log(Level.INFO,"The player: '"+current.getName()"' have win");
 
 
 
