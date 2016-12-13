@@ -1,7 +1,6 @@
 package game;
 
 import exception.NotFoundException;
-import grid.Column;
 import grid.Row;
 import player.Player;
 
@@ -12,8 +11,6 @@ import java.util.logging.*;
 
 
 import show.Console;
-
-import static game.Motor.*;
 
 
 

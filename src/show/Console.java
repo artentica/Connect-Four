@@ -1,9 +1,7 @@
 package show;
 
 import game.Interface;
-import game.Motor;
 import grid.Column;
-import grid.Token;
 import player.Player;
 
 import java.util.Scanner;
@@ -13,6 +11,8 @@ import java.util.Vector;
  * Created by artentica on 06/12/2016.
  */
 public class Console implements Interface {
+
+    public String exit = "exit";
 
     public void displayGrid(Vector<Column> vct) {
         int size = (vct.elementAt(0)).getSize();
@@ -43,7 +43,7 @@ public class Console implements Interface {
         while (nb < 2) {
             System.out.println("Nombre de joueur: ");
             str = sc.nextLine();
-            if (str.equals("exit")) System.exit(0);
+            if (str.equals(this.exit)) System.exit(0);
 
             try {
                 nb = Integer.parseInt(str);
@@ -71,7 +71,7 @@ public class Console implements Interface {
         while (nb<=0 || (nb-1)%nbPlayers!=0 ) {
             System.out.println("Combien de manches?");
             str = sc.nextLine();
-            if (str.equals("exit")) System.exit(0);
+            if (str.equals(this.exit)) System.exit(0);
 
             try {
                 nb = Integer.parseInt(str);
@@ -95,7 +95,7 @@ public class Console implements Interface {
         while (str.length() < 1 || str.length() > 15) {
             System.out.println("Nom du joueur n°" + (i + 1) + ": ");
             str = sc.nextLine();
-            if (str.equals("exit")) System.exit(0);
+            if (str.equals(this.exit)) System.exit(0);
 
             if (str.length() < 1 || str.length() > 15)
                 System.out.println("Le nom doit faire entre 1 et 15 caractères, nombre de caractères actuel: " + str.length());
@@ -130,7 +130,7 @@ public class Console implements Interface {
             System.out.println("Symbole du joueur " + name + ": ");
             symbol = sc.nextLine();
 
-            if (str.equals("exit")) System.exit(0);
+            if (str.equals(this.exit)) System.exit(0);
 
             if (symbol.length() != 1 && !symbol.equals("."))
                 System.out.println("Le symbole ne doit faire qu'un seule et ne doit pas être un '.', taille actuel: " + symbol.length());
@@ -158,7 +158,7 @@ public class Console implements Interface {
         do {
             System.out.println("Choisissez une colonne: ");
             str = sc.nextLine();
-            if (str.equals("exit")) System.exit(0);
+            if (str.equals(this.exit)) System.exit(0);
             try {
                 nb = Integer.parseInt(str);
             } catch (NumberFormatException e) {
@@ -185,7 +185,7 @@ public class Console implements Interface {
         do {
             System.out.println("Choisissez le nombre de colonnes (min. 4): ");
             str = sc.nextLine();
-            if (str.equals("exit")) System.exit(0);
+            if (str.equals(this.exit)) System.exit(0);
             try {
                 nb = Integer.parseInt(str);
             } catch (NumberFormatException e) {
@@ -206,7 +206,7 @@ public class Console implements Interface {
         do {
             System.out.println("Choisissez le nombre de lignes (min. 2): ");
             str = sc.nextLine();
-            if (str.equals("exit")) System.exit(0);
+            if (str.equals(this.exit)) System.exit(0);
             try {
                 nb = Integer.parseInt(str);
             } catch (NumberFormatException e) {
@@ -227,7 +227,7 @@ public class Console implements Interface {
         while (true){
 
             str = sc.nextLine();
-            if (str.equals("exit")) System.exit(0);
+            if (str.equals(this.exit)) System.exit(0);
             else if (str.equals("y")) return true;
             else if (str.equals("n")) return false;
             else System.out.println("Veuillez choisir entre oui(y) et non(n):");

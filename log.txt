@@ -1,28 +1,8 @@
-déc. 13, 2016 9:35:30 AM game.Game main
+déc. 13, 2016 9:40:55 AM game.Game main
 INFOS: Programm start
-déc. 13, 2016 9:35:31 AM game.Game main
+déc. 13, 2016 9:40:57 AM game.Game main
 INFOS: Command('n') Not a custum grid
-déc. 13, 2016 9:35:31 AM game.Game main
+déc. 13, 2016 9:40:57 AM game.Game main
 INFOS: Creation of the IHM
-déc. 13, 2016 9:35:31 AM game.Game main
+déc. 13, 2016 9:40:57 AM game.Game main
 INFOS: Instanciation of the variables
-déc. 13, 2016 9:35:31 AM game.Game main
-INFOS: Command('2')' Number of players
-déc. 13, 2016 9:35:31 AM game.Game main
-INFOS: Creation of the player n°1
-déc. 13, 2016 9:35:32 AM game.Game main
-INFOS: Command('p')' Name of the player n°1
-déc. 13, 2016 9:35:32 AM game.Game main
-INFOS: Command('p')' Symbol of the player n°1 named p
-déc. 13, 2016 9:35:32 AM game.Game main
-INFOS: Creation of the player n°2
-déc. 13, 2016 9:35:32 AM game.Game main
-INFOS: Command('o')' Name of the player n°2
-déc. 13, 2016 9:35:33 AM game.Game main
-INFOS: Command('o')' Symbol of the player n°2 named o
-déc. 13, 2016 9:35:34 AM game.Game loopGame
-INFOS: Command('3') There is a maximum of 3
-déc. 13, 2016 9:35:34 AM game.Game loopGame
-INFOS: Beginning of a game
-déc. 13, 2016 9:35:34 AM game.Game loopGame
-INFOS: It's to p to play
