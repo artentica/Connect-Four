@@ -55,7 +55,7 @@ public class Motor {
         for (int i = 0; i < vct.size(); i++) {
             if (vct.elementAt(i).getIndex() == index) return vct.elementAt(i);
         }
-        throw new NotFoundException("Index du joueur non trouvé: " + String.valueOf(index));
+        throw new NotFoundException("Index du joueur non trouvé: " + index);
     }
 
     public static void addToken(Player current, Column column) {

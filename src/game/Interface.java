@@ -23,9 +23,11 @@ public interface Interface{  // notre interface
     public abstract void fullGrid();
     public abstract void win(String name);
 
+    public abstract boolean finalWinner(Vector<Player> winner, int limit);
+
     public abstract int numberWinGame(int nbPlayers);
 
-    public abstract void score(Vector<Player> vct, int win);
+    public abstract void score(Vector<Player> vct, int win, int limit);
 
 
 

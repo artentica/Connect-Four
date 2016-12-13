@@ -31,6 +31,7 @@ public class Row {
 
 	public void setZero(){
 		for (int i = 0; i<this.line.size(); i++) {
+			this.line.elementAt(i).setFree(this.line.elementAt(i).getLine().size());
 			for (int x = 0; x < this.line.elementAt(i).getLine().size(); x++) {
 				this.line.elementAt(i).getLine().set(x, new Token("."));
 			}

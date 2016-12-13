@@ -69,8 +69,7 @@ public class Console implements Interface {
 
 
         while (nb<=0 || (nb-1)%nbPlayers!=0 ) {
-            System.out.println("Combien de manches gagnantes?");
-
+            System.out.println("Combien de manches?");
             str = sc.nextLine();
             if (str.equals("exit")) System.exit(0);
 
@@ -260,14 +259,27 @@ public class Console implements Interface {
         System.out.println("Victoire diagonal haut gauche à bas droite \\");
     }
 
-    public void score(Vector<Player> vct, int win){
+    public void score(Vector<Player> vct, int win, int limit){
         for(int i = 0; i<vct.size();i++){
             System.out.println("Player "+ vct.elementAt(i).getName() + " have " + vct.elementAt(i).getVictory() + " win(s)");
         }
-        System.out.println("There is "+ win + " game(s) to do !!!");
+        if(!this.finalWinner(vct, limit))System.out.println("There is "+ win + " game(s) to do !!!");
     }
 
     public void win(String name){
         System.out.println("The player: '" + name + "' won");
     }
+
+    public boolean finalWinner(Vector<Player> players, int limit){
+        Player winner;
+        for (int i = 0; i<players.size(); i++){
+            if (players.elementAt(i).getVictory() == (limit-1)/players.size()+1){
+                winner = players.elementAt(i);
+                System.out.println("Le joueur gagnant est " + winner.getName() + " avec " + winner.getVictory() + "/" + limit + " des parties gagnées");
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
